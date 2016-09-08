@@ -24,6 +24,10 @@ import com.unimelb.swen30006.metromadness.trains.BigPassengerTrain;
 import com.unimelb.swen30006.metromadness.trains.SmallPassengerTrain;
 import com.unimelb.swen30006.metromadness.trains.Train;
 
+/**
+ * File for instantiating and initializing the necessary elements from an xml map,
+ * including trains, stations, and lines
+ */
 public class MapReader {
 
 	public ArrayList<Train> trains;
@@ -41,6 +45,9 @@ public class MapReader {
 		this.processed = false;
 	}
 
+	/**
+	 * Processes the xml map melbourne.xml contained in the specified directory
+	 */
 	public void process(){
 		try {
 			// Build the doc factory
@@ -80,21 +87,34 @@ public class MapReader {
 		}
 	}
 	
+	/**
+	 * Returns the processed collection of Trains
+	 */
 	public Collection<Train> getTrains(){
 		if(!this.processed) { this.process(); }
 		return this.trains;
 	}
 	
+	/**
+	 * Returns the processed collection of Lines
+	 */
 	public Collection<Line> getLines(){
 		if(!this.processed) { this.process(); }
 		return this.lines.values();
 	}
 	
+	/**
+	 * Returns the processed collection of Stations
+	 */
 	public Collection<Station> getStations(){
 		if(!this.processed) { this.process(); }
 		return this.stations.values();
 	}
 
+	/**
+	 * Constructs instances of Trains for each 'train' listing in the xml map
+	 * @param e the processed xml element
+	 */
 	private Train processTrain(Element e){
 		// Retrieve the values
 		String type = e.get("type");
@@ -116,6 +136,10 @@ public class MapReader {
 		}
 	}
 
+	/**
+	 * Constructs instances of Stations for each 'station' listing in the xml map
+	 * @param e the processed xml element
+	 */
 	private Station processStation(Element e){
 		String type = e.get("type");
 		String name = e.get("name");
@@ -136,6 +160,10 @@ public class MapReader {
 		return null;
 	}
 
+	/**
+	 * Constructs instances of Liness for each 'line' listing in the xml map
+	 * @param e the processed xml element
+	 */
 	private Line processLine(Element e){
 		Color stationCol = extractColour(e.getChildByName("station_colour"));
 		Color lineCol = extractColour(e.getChildByName("line_colour"));
@@ -152,6 +180,10 @@ public class MapReader {
 		return l;
 	}
 	
+	/**
+	 * Constructs an instance of Router
+	 * @param type A string describing which type of router to implement
+	 */
 	private PassengerRouter createRouter(String type){
 		if(type.equals("simple")){
 			return new SimpleRouter();
@@ -159,6 +191,10 @@ public class MapReader {
 		return null;
 	}
 	
+	/**
+	 * Gets the colour associated with an xml element
+	 * @param e the xml element
+	 */
 	private Color extractColour(Element e){
 		float red = e.getFloat("red")/255f;
 		float green = e.getFloat("green")/255f;
