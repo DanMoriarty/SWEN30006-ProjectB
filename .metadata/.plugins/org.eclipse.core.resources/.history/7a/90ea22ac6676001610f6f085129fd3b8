@@ -1,9 +1,0 @@
-package com.unimelb.swen30006.metromadness;
-
-public class PlatformSizeException extends Exception{
-
-	public PlatformSizeException() {
-		super("Error: Train is too long for Platform");
-	}
-
-}

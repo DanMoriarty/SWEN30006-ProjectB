@@ -1,3 +1,0 @@
-INDEX VERSION 1.129+/Users/sni/SWEN30006-ProjectB/.metadata/.plugins/org.eclipse.jdt.core
-1886628390.index
-1968857615.index
