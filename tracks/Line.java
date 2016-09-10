@@ -83,6 +83,15 @@ public class Line {
 			throw new UnlistedStationException();
 		}
 	}
+	
+	public boolean endOfLine(int stationIndex, Boolean forward) {
+		if(stationIndex == 0){
+			return true;
+		}else if (stationIndex == this.stations.size()-1){
+			return false;
+		} else
+			return forward;
+	}
 
 	
 	/**
