@@ -15,12 +15,12 @@ import com.unimelb.swen30006.metromadness.exceptions.*;
 
 /**
  * Program representing a train running on the Melbourne Metro.
- * Handles a number of responsibilities depending on its given state as it 
+ * Handles a number of responsibilities depending on its given state as it
  * passes in and out of stations along its allocated line
  */
 public class Train {
 
-	// The state that a train can be in 
+	// The state that a train can be in
 	public enum State {
 		IN_STATION, READY_DEPART, ON_ROUTE, WAITING_ENTRY, FROM_DEPOT
 	}
@@ -39,9 +39,9 @@ public class Train {
 	// Passenger Information
 	public ArrayList<Passenger> passengers;
 	public float departureTimer;
-	
+
 	// Station and track and position information
-	public Station station; 
+	public Station station;
 	public Track track;
 	public Point2D.Float pos;
 
@@ -53,7 +53,7 @@ public class Train {
 	public int numTrips;
 	public boolean disembarked;
 
-	
+
 	public Train(Line trainLine, Station start, boolean forward){
 		this.trainLine = trainLine;
 		this.station = start;
@@ -71,7 +71,7 @@ public class Train {
 		for(Passenger passenger: this.passengers){
 			passenger.update(delta);
 		}
-		
+
 		// Update the state
 		switch(this.state) {
 		case FROM_DEPOT:
@@ -89,18 +89,18 @@ public class Train {
 			}
 		case IN_STATION:
 
-			// When in station we want to disembark passengers 
+			// When in station we want to disembark passengers
 			// and wait 10 seconds for incoming passgengers
 			if(!this.disembarked){
 				this.disembark();
 				this.departureTimer = this.station.getDepartureTime();
 				this.disembarked = true;
 			} else {
-				// Count down if departure timer. 
+				// Count down if departure timer.
 				if(this.departureTimer>0){
 					this.departureTimer -= delta;
 				} else {
-					// We are ready to depart, find the next track and wait until we can enter 
+					// We are ready to depart, find the next track and wait until we can enter
 					try {
 						boolean endOfLine = this.trainLine.endOfLine(this.station);
 						if(endOfLine){
@@ -110,11 +110,10 @@ public class Train {
 						this.state = State.READY_DEPART;
 						break;
 					} catch (UnlistedStationException e){
-						return;
+						e.printStackTrace();
 					} catch (Exception e){
 						// Massive error.
 						e.printStackTrace();
-						return;
 					}
 				}
 			}
@@ -130,13 +129,13 @@ public class Train {
 					// Depart our current station
 					this.station.depart(this);
 					this.station = next;
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				this.track.enter(this);
 				this.state = State.ON_ROUTE;
-			}		
+			}
 			break;
 		case ON_ROUTE:
 
@@ -159,7 +158,7 @@ public class Train {
 					this.state = State.IN_STATION;
 					this.disembarked = false;
 				}
-			} 
+			}
 			catch (PlatformSizeException e) {
 				//Train size is incompatible for the station's platform length
 				try {
@@ -170,7 +169,7 @@ public class Train {
 					}
 					//get the next track
 					this.track = this.trainLine.nextTrack(this.station, this.forward);
-					
+
 					this.state = State.READY_DEPART;
 				} catch (Exception f) {
 					f.printStackTrace();
@@ -206,7 +205,7 @@ public class Train {
 	}
 
 	/**
-	 *Removes passengers from train as they reach their destination station 
+	 *Removes passengers from train as they reach their destination station
 	 * @return list of passengers disembarking
 	 */
 	public ArrayList<Passenger> disembark(){
@@ -236,8 +235,8 @@ public class Train {
 	public boolean inStation(){
 		return (this.state == State.IN_STATION || this.state == State.READY_DEPART);
 	}
-	
-	public float angleAlongLine(float x1, float y1, float x2, float y2){	
+
+	public float angleAlongLine(float x1, float y1, float x2, float y2){
 		return (float) Math.atan2((y2-y1),(x2-x1));
 	}
 
@@ -252,7 +251,7 @@ public class Train {
 			renderer.circle(this.pos.x, this.pos.y, TRAIN_WIDTH);
 		}
 	}
-	
-	
-	
+
+
+
 }
