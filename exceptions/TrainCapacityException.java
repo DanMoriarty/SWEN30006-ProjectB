@@ -6,6 +6,4 @@ public class TrainCapacityException extends Exception {
 		super("Error: Train capacity reached. Cannot take any more passengers");
 	}
 
-
-
 }

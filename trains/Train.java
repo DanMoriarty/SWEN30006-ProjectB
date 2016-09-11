@@ -213,7 +213,7 @@ public class Train {
 		Iterator<Passenger> iterator = this.passengers.iterator();
 		while(iterator.hasNext()){
 			Passenger passenger = iterator.next();
-			if(this.station.shouldLeave(passenger)){
+			if(passenger.shouldLeave(this.station, passenger)){
 				disembarking.add(passenger);
 				iterator.remove();
 			}
@@ -251,7 +251,5 @@ public class Train {
 			renderer.circle(this.pos.x, this.pos.y, TRAIN_WIDTH);
 		}
 	}
-
-
 
 }

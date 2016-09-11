@@ -91,7 +91,7 @@ public class ActiveStation extends Station implements PassengerGenerator {
 		}
 		Station s = line.stations.get(index);
 				
-		return new Passenger(this, s);
+		return new Passenger(this, s, router);
 	}
 
 
