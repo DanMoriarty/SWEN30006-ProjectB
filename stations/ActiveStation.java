@@ -82,7 +82,7 @@ public class ActiveStation extends Station implements PassengerGenerator {
 		forward = line.endOfLine(current_station, forward);
 			
 		// Find the destination station
-		int index = 0;
+		int index;
 		Random random = new Random();
 		if (forward){
 			index = random.nextInt(line.stations.size() -1-current_station) + current_station + 1;

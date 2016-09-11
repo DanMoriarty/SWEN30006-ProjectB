@@ -26,7 +26,7 @@ public class ShortPlatformStation extends ActiveStation {
 	}
 	
 	@Override
-	public void depart(Train t) throws Exception{
+	public void depart(Train t) throws Exception {
 		if (t.getClass()!=SmallPassengerTrain.class)
 			return;
 		super.depart(t);

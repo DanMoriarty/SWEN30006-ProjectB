@@ -11,10 +11,10 @@ public interface PassengerRouter {
 
 	/**
 	 * Checks if a passenger has reached their intended station and should disembark
-	 * @param p the passenger
 	 * @param current the station at which the passenger has arrived
+	 * @param p the passenger
 	 * @return true if passenger should leave at the current station
 	 */
-	public boolean shouldLeave(Station current, Passenger p);
+	boolean shouldLeave(Station current, Passenger p);
 	
 }

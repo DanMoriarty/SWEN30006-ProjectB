@@ -12,7 +12,6 @@ import com.unimelb.swen30006.metromadness.trains.Train;
 public class Track {
 	
 	//rendering constants
-	public static final float DRAW_RADIUS=10f;
 	public static final int LINE_WIDTH=6;
 	public Point2D.Float startPos;
 	public Point2D.Float endPos;

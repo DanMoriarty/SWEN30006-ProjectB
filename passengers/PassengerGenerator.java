@@ -6,11 +6,11 @@ public interface PassengerGenerator {
 	 * Generates passengers waiting at a station
 	 * @return The list of generated passengers
 	 */
-	public Passenger[] generatePassengers();
+	Passenger[] generatePassengers();
 	
 	/**
 	 * Generates a passenger waiting at a station
-	 * @return The list of generated passengers
+	 * @return A single passenger which has been generated
 	 */
-	public Passenger generatePassenger();
+	Passenger generatePassenger();
 }

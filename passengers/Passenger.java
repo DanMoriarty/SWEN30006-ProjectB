@@ -8,7 +8,7 @@ import com.unimelb.swen30006.metromadness.stations.Station;
  */
 public class Passenger {
 
-	public Station begining;
+	public Station beginning;
 	public Station destination;
 	public float travelTime;
 	public boolean reachedDestination;
@@ -17,7 +17,7 @@ public class Passenger {
 	public PassengerRouter router;
 
 	public Passenger(Station start, Station end, PassengerRouter router){
-		this.begining = start;
+		this.beginning = start;
 		this.destination = end;
 		this.reachedDestination = false;
 		this.travelTime = 0;

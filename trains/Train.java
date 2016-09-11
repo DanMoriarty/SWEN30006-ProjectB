@@ -26,11 +26,9 @@ public class Train {
 	}
 
 	// Constants
-	public static final int MAX_TRIPS=4;
 	public static final Color FORWARD_COLOUR = Color.ORANGE;
 	public static final Color BACKWARD_COLOUR = Color.VIOLET;
 	public static final float TRAIN_WIDTH=4;
-	public static final float TRAIN_LENGTH = 6;
 	public static final float TRAIN_SPEED=50f;
 
 	// The line that this is traveling on
@@ -251,5 +249,7 @@ public class Train {
 			renderer.circle(this.pos.x, this.pos.y, TRAIN_WIDTH);
 		}
 	}
+
+
 
 }
